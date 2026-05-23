@@ -188,6 +188,8 @@
             border-radius: 8px;
             display: inline-block;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -201,13 +203,16 @@
             border-radius: 8px;
             font-weight: 600;
             transition: background 0.3s ease;
+            background: none;
+            color: #fff;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* GRID CARDS (SERVICES & SERVICES SECTION) */
+        /* GRID CARDS (SERVICES) */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -240,10 +245,10 @@
             font-size: 0.95rem;
         }
 
-        /* GALLERY & PORTFOLIO */
+        /* GALLERY & PORTFOLIO (MINIMUM 6 PROJETS) */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
@@ -253,17 +258,19 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg-card);
         }
 
         .portfolio-item img {
             width: 100%;
-            height: 250px;
+            height: 240px;
             object-fit: cover;
             transition: transform 0.5s ease;
+            display: block;
         }
 
         .portfolio-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         .portfolio-overlay {
@@ -271,11 +278,11 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 25px;
-            background: linear-gradient(to top, rgba(10,15,29,0.95), rgba(10,15,29,0));
+            padding: 20px;
+            background: linear-gradient(to top, rgba(10,15,29,0.95) 70%, rgba(10,15,29,0));
         }
 
-        /* AUTOMATED QUOTE CALCULATOR */
+        /* AUTOMATED QUOTE CALCULATOR (OPTIMISÉ 100$ - 1500$) */
         .quote-box {
             background: var(--bg-card);
             max-width: 600px;
@@ -286,13 +293,14 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
+            color: #fff;
         }
 
         select, input, textarea {
@@ -305,26 +313,21 @@
             font-size: 1rem;
         }
 
-        select:focus, input:focus {
+        select:focus, input:focus, textarea:focus {
             border-color: var(--accent-cyan);
             outline: none;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
         }
 
         .price-display {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--accent-cyan);
             text-align: center;
-            margin: 25px 0;
+            margin: 30px 0;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
         }
 
-        /* TESTIMONIALS SECTION */
-        .testimonials {
-            margin-top: 60px;
-            padding: 40px 0;
-        }
-
-        /* AUTOMATION NOTIFICATION SYSTEM */
         .automation-badge {
             display: inline-flex;
             align-items: center;
@@ -352,235 +355,8 @@
         /* RESPONSIVE SMARTPHONES & TABLETS */
         @media (max-width: 968px) {
             header { padding: 15px 5%; }
-            nav { display: none; } /* On simplifie l'UI pour focus l'action mobile */
+            nav { display: none; }
             .hero { flex-direction: column; text-align: center; padding: 30px 0; }
             .hero-content h1 { font-size: 2.3rem; }
             .hero-content p { margin: 20px auto; }
-            .btn-group { flex-direction: column; width: 100%; }
-            .btn-primary, .btn-secondary { text-align: center; width: 100%; }
-            .quote-box { padding: 25px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">Studio Kponadou</div>
-        <nav>
-            <button onclick="switchTab('accueil')" id="nav-accueil" class="active">Accueil</button>
-            <button onclick="switchTab('services')" id="nav-services">Services</button>
-            <button onclick="switchTab('portfolio')" id="nav-portfolio">Portfolio</button>
-            <button onclick="switchTab('propos')" id="nav-propos">À Propos</button>
-            <button onclick="switchTab('rendezvous')" id="nav-rendezvous">Rendez-vous</button>
-            <button onclick="switchTab('contact')" id="nav-contact">Contact</button>
-        </nav>
-        <a href="https://wa.me/2250169134408?text=Bonjour%20Studio%20Kponadou,%20je%20souhaite%20lancer%20un%20projet%20web." class="cta-header" target="_blank">Lancer mon Projet</a>
-    </header>
-
-    <main>
-        
-        <section id="accueil" class="section active">
-            <div class="hero">
-                <div class="hero-content">
-                    <div class="automation-badge">⚡ Devis Instantané & Système Connecté</div>
-                    <h1>Nous propulsons les PME avec des sites web <span>Haute Couture</span></h1>
-                    <p>Studio Kponadou conçoit des interfaces digitales d'élite, ultra-rapides, magnifiques et entièrement automatisées pour convertir vos visiteurs en acheteurs.</p>
-                    <div class="btn-group">
-                        <button class="btn-primary" onclick="switchTab('rendezvous')">Estimer mon Projet / RDV</button>
-                        <button class="btn-secondary" onclick="switchTab('services')">Découvrir nos solutions</button>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.pexels.com/photos/3182746/pexels-photo-3182746.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Studio Kponadou Agence Digitale">
-                </div>
-            </div>
-
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Performance Maximale</h3>
-                    <p>Code ultra-léger et optimisation SEO avancée pour apparaître en tête des résultats de recherche Google.</p>
-                </div>
-                <div class="card">
-                    <h3>Expérience Mobile Élite</h3>
-                    <p>Chaque pixel est programmé pour offrir une navigation fluide et tactile digne d'une application sur smartphone.</p>
-                </div>
-                <div class="card">
-                    <h3>Automatisation Métier</h3>
-                    <p>Intégration directe de calculateurs de prix, de tunnels WhatsApp et de passerelles de notifications autonomes.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section">
-            <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Nos Prestations & Ingénierie Web</h2>
-            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px auto;">Des solutions sur mesure pour numériser, rassurer vos prospects et faire décoller votre chiffre d'affaires.</p>
-            
-            <div class="grid-3">
-                <div class="card">
-                    <h3 style="color: var(--accent-cyan);">01 / Sites Vitrines de Luxe</h3>
-                    <p>Idéal pour les artisans, PME, restaurants et salles de sport. Une interface captivante avec système d'ancrage fluide et conversion WhatsApp instantanée.</p>
-                </div>
-                <div class="card">
-                    <h3 style="color: var(--accent-cyan);">02 / Écosystèmes E-Commerce</h3>
-                    <p>Boutiques en ligne haut de gamme avec tunnels de paiement optimisés, gestion simplifiée des stocks et relances automatisées de paniers abandonnés.</p>
-                </div>
-                <div class="card">
-                    <h3 style="color: var(--accent-cyan);">03 / Automatisation & API</h3>
-                    <p>Formulaires intelligents, prise de rendez-vous synchronisée sur Google Calendar et génération automatisée de factures ou de devis PDF.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="section">
-            <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Notre Galerie de Réalisations</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Découvrez quelques exemples d'interfaces premium livrées pour nos clients partenaires.</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Projet Restaurant Saveurs">
-                    <div class="portfolio-overlay">
-                        <h3 style="color: var(--accent-gold);">Saveurs Gastronomie</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Site vitrine haut de gamme avec menu interactif et système d'appel direct.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Projet Plateforme Sport">
-                    <div class="portfolio-overlay">
-                        <h3 style="color: var(--accent-cyan);">Le Sport c'est la Santé</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">Landing page sportive haute conversion optimisée Mobile-First.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="propos" class="section">
-            <div class="hero">
-                <div class="hero-image">
-                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Équipe Studio Kponadou">
-                </div>
-                <div class="hero-content">
-                    <h2>L'Excellence Digitale par Studio Kponadou</h2>
-                    <p style="margin-top: 15px;">Nous pensons que le site internet d'une entreprise ne doit pas simplement être "joli", il doit agir comme votre meilleur commercial disponible 24h/24 et 7j/7.</p>
-                    <p style="margin-top: 10px; color: var(--text-muted);">Spécialisés dans le développement d'architectures web ultra-légères et véloces, nous accompagnons les indépendants et les PME ambitieuses pour leur offrir une présence en ligne capable de rivaliser avec les plus grandes agences mondiales.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="rendezvous" class="section">
-            <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Générateur de Devis Instantané</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Estimez le coût de votre futur site web en temps réel grâce à notre algorithme.</p>
-            
-            <div class="quote-box">
-                <div class="form-group">
-                    <label for="site-type">Type de projet web :</label>
-                    <select id="site-type" onchange="calculateQuote()">
-                        <option value="500">Site Vitrine Standard (500 $)</option>
-                        <option value="900">Site Vitrine Premium & Luxe (900 $)</option>
-                        <option value="1500">Plateforme E-Commerce Complète (1500 $)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="site-pages">Nombre de pages souhaité :</label>
-                    <select id="site-pages" onchange="calculateQuote()">
-                        <option value="0">Page Unique (Landing Page)</option>
-                        <option value="150">De 2 à 6 pages (+150 $)</option>
-                        <option value="350">Plus de 6 pages (+350 $)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="site-auto">Options d'automatisations avancées :</label>
-                    <select id="site-auto" onchange="calculateQuote()">
-                        <option value="0">Aucune (Formulaire simple)</option>
-                        <option value="200">Tunnel de vente & Script WhatsApp (+200 $)</option>
-                        <option value="400">Système complet automatisé (RDV + Rappels) (+400 $)</option>
-                    </select>
-                </div>
-                
-                <div class="price-display">Estimation : <span id="total-price">500</span> $</div>
-                
-                <button class="btn-primary" style="width: 100%; border: none; cursor: pointer;" onclick="sendQuoteAutomation()">Valider et Réserver mon créneau de RDV</button>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Discutons de votre projet</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Notre système automatisé transmettra votre demande instantanément à notre équipe technique.</p>
-            
-            <div class="quote-box" style="max-width: 700px;">
-                <form id="contactForm" onsubmit="handleContactSubmit(event)">
-                    <div class="form-group">
-                        <label for="clientName">Votre Nom Complet :</label>
-                        <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientMsg">Description de vos objectifs commerciaux :</label>
-                        <textarea id="clientMsg" rows="5" required placeholder="Décrivez votre activité et vos besoins..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Envoyer ma demande sécurisée</button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>© 2026 Studio Kponadou. Tous droits réservés.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.2);">Contact Direct : succesanicet@gmail.com | 0169134408</p>
-    </footer>
-
-    <script>
-        // ROUTING SYSTEM (SPA ON-CLICK TAB SWITCH)
-        function switchTab(tabId) {
-            // Désactiver toutes les sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-            
-            // Désactiver tous les boutons de navigation
-            const navButtons = document.querySelectorAll('nav button');
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Activer la section et le bouton cibles
-            document.getElementById(tabId).classList.add('active');
-            const currentNav = document.getElementById('nav-' + tabId);
-            if(currentNav) currentNav.classList.add('active');
-            
-            // Scroll fluide vers le haut automatique
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // DEVIS ET ALGORITHME AUTOMATISÉ
-        function calculateQuote() {
-            const basePrice = parseInt(document.getElementById('site-type').value);
-            const pagesPrice = parseInt(document.getElementById('site-pages').value);
-            const autoPrice = parseInt(document.getElementById('site-auto').value);
-            
-            const total = basePrice + pagesPrice + autoPrice;
-            document.getElementById('total-price').innerText = total;
-        }
-
-        // AUTOMATION ACTION WHATSAPP (DEVIS)
-        function sendQuoteAutomation() {
-            const price = document.getElementById('total-price').innerText;
-            const typeText = document.getElementById('site-type').options[document.getElementById('site-type').selectedIndex].text;
-            
-            const message = `Bonjour Studio Kponadou, j'ai utilisé votre estimateur en ligne. Je souhaite commander un projet : ${typeText}. Mon estimation automatisée est de ${price} $. Je souhaite bloquer mon créneau de rendez-vous.`;
-            const whatsappUrl = `https://wa.me/2250169134408?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // AUTOMATION FORMULAIRE CONTACT DIRECT E-MAIL
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('clientName').value;
-            const text = document.getElementById('clientMsg').value;
-            
-            const emailSubject = encodeURIComponent(`Nouveau Prospect Portfolio - Studio Kponadou`);
-            const emailBody = encodeURIComponent(`Bonjour,\n\nVous avez reçu une demande de projet de la part de : ${name}.\n\nMessage client :\n${text}`);
-            
-            // Redirection vers le client mail de l'utilisateur pour envoi transparent
-            window.location.href = `mailto:succesanicet@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-        }
-    </script>
-</body>
-</html>
+            .btn-group { flex

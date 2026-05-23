@@ -6,7 +6,7 @@
     <meta name="description" content="Studio Kponadou - Création de sites web vitrines et e-commerce premium, ultra-rapides et optimisés SEO.">
     <title>Studio Kponadou | Agence Web Digitale Haute Couture</title>
     <style>
-        /* RESET & LOGIQUE VISUELLE CORRIGÉE */
+        /* CORE RESTRUCTURATION CORRIGÉE */
         :root {
             --bg-main: #0a0f1d;
             --bg-card: #131c31;
@@ -196,7 +196,7 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* GRILLE DE GRANDS COMPOSANTS (SERVICES) */
+        /* GRILLE DE COMPOSANTS (SERVICES) */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -221,7 +221,7 @@
             font-size: 0.95rem;
         }
 
-        /* 🖼️ GALERIE DES RÉALISATIONS : 6 PROJETS OPTIMISÉS */
+        /* GALERIE DES RÉALISATIONS : 6 PROJETS OPTIMISÉS */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -263,7 +263,7 @@
             color: var(--text-muted);
         }
 
-        /* 💰 BOÎTE DE DEVIS : TARIFS DE 100$ À 1500$ */
+        /* BOÎTE DE DEVIS & RECHERCHE */
         .quote-box {
             background: var(--bg-card);
             max-width: 600px;
@@ -323,7 +323,6 @@
             font-size: 0.9rem;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { display: none; }
             .hero { flex-direction: column; text-align: center; }
@@ -344,7 +343,7 @@
             <button onclick="switchTab('rendezvous')" id="nav-rendezvous">Devis / RDV</button>
             <button onclick="switchTab('contact')" id="nav-contact">Contact</button>
         </nav>
-        <a href="https://wa.me/2250169134408?text=Bonjour,%20je%20souhaite%20créer%20un%20site." class="cta-header" target="_blank">WhatsApp Direct</a>
+        <a href="https://wa.me/2290169134408?text=Bonjour,%20je%20souhaite%20créer%20un%20site." class="cta-header" target="_blank">WhatsApp Direct</a>
     </header>
 
     <main>
@@ -479,7 +478,7 @@
         <section id="contact" class="section">
             <h2 style="text-align: center; margin-bottom: 20px;">Soumettre votre cahier des charges</h2>
             <div class="quote-box">
-                <form onsubmit="handleContactSubmit(event)">
+                <form onsubmit="envoyerFormulaireDirect(event)">
                     <div class="form-group">
                         <label for="clientName">Nom Complet :</label>
                         <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
@@ -488,7 +487,7 @@
                         <label for="clientMsg">Description de vos objectifs commerciaux :</label>
                         <textarea id="clientMsg" rows="4" required placeholder="Décrivez votre projet..."></textarea>
                     </div>
-                    <button type="submit" class="btn-primary" style="width: 100%;">Transmettre la demande</button>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Transmettre par WhatsApp</button>
                 </form>
             </div>
         </section>
@@ -501,7 +500,6 @@
     </footer>
 
     <script>
-        // ROUTAGE INTERNE ET AFFICHAGE DES ONGLETS (RÉSOUT LE PROBLÈME D'ÉCRAN NOIR)
         function switchTab(tabId) {
             const sections = document.querySelectorAll('.section');
             sections.forEach(sec => sec.classList.remove('active'));
@@ -516,7 +514,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // CALCULATEUR AJUSTÉ DE 100$ À 1500$ MAX
         function calculateQuote() {
             const basePrice = parseInt(document.getElementById('site-type').value);
             const pagesPrice = parseInt(document.getElementById('site-pages').value);
@@ -524,44 +521,32 @@
             
             let total = basePrice + pagesPrice + autoPrice;
             
-            // Sécurité logicielle de contrôle du plafond
             if (total > 1500) total = 1500;
             if (total < 100) total = 100;
             
             document.getElementById('total-price').innerText = total;
         }
 
-       // TUNNEL WHATSAPP AUTONOME (DEVIS)
-function sendQuoteAutomation() {
-    const price = document.getElementById('total-price').innerText;
-    const typeText = document.getElementById('site-type').options[document.getElementById('site-type').selectedIndex].text;
-    
-    const message = `Bonjour Studio Kponadou, je souhaite commander un projet : ${typeText}. Mon estimation automatisée en ligne est de ${price} $. Merci de valider mon créneau de traitement.`;
-    window.open(`https://wa.me/2290169134408?text=${encodeURIComponent(message)}`, '_blank');
-}
+        function sendQuoteAutomation() {
+            const price = document.getElementById('total-price').innerText;
+            const typeText = document.getElementById('site-type').options[document.getElementById('site-type').selectedIndex].text;
+            
+            const message = `Bonjour Studio Kponadou, je souhaite commander un projet : ${typeText}. Mon estimation automatisée en ligne est de ${price} $. Merci de valider mon créneau de traitement.`;
+            window.open(`https://wa.me/2290169134408?text=${encodeURIComponent(message)}`, '_blank');
+        }
 
-// TUNNEL DOUBLE ACTION (E-MAIL + WHATSAPP CORRIGÉ)
-function handleContactSubmit(event) {
-    event.preventDefault(); // Empêche la page de se recharger inutilement
-    
-    // Récupération sécurisée des valeurs
-    const name = document.getElementById('clientName').value;
-    const text = document.getElementById('clientMsg').value;
-    
-    // 1. Préparation des textes de message
-    const rawMessage = `Bonjour Studio Kponadou,\n\nNouveau message de : ${name}\n\nObjectifs du projet :\n${text}`;
-    
-    // 2. ACTION E-MAIL (Ouvre l'application de messagerie par défaut)
-    const emailSubject = encodeURIComponent(`Nouveau Projet - Studio Kponadou`);
-    const emailBody = encodeURIComponent(rawMessage);
-    window.location.href = `mailto:succesanicet@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-    
-    // 3. ACTION WHATSAPP SIMULTANÉE (Ouvre WhatsApp dans un nouvel onglet après 1 seconde)
-    setTimeout(() => {
-        const whatsappUrl = `https://wa.me/2290169134408?text=${encodeURIComponent(rawMessage)}`;
-        window.open(whatsappUrl, '_blank');
-    }, 1000);
-}
+        // FONCTION DE CONTACT SANS BLOCAGE POP-UP DE NAVIGATEUR
+        function envoyerFormulaireDirect(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('clientName').value;
+            const text = document.getElementById('clientMsg').value;
+            
+            const messageComplet = `Bonjour Studio Kponadou,\n\nNouveau message de : ${name}\n\nObjectifs du projet :\n${text}`;
+            
+            // Redirige directement dans WhatsApp sans déclencher la sécurité pop-up
+            window.location.href = `https://wa.me/2290169134408?text=${encodeURIComponent(messageComplet)}`;
+        }
     </script>
 </body>
 </html>

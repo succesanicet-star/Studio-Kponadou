@@ -531,26 +531,37 @@
             document.getElementById('total-price').innerText = total;
         }
 
-        // TUNNEL WHATSAPP AUTONOME
-        function sendQuoteAutomation() {
-            const price = document.getElementById('total-price').innerText;
-            const typeText = document.getElementById('site-type').options[document.getElementById('site-type').selectedIndex].text;
-            
-            const message = `Bonjour Studio Kponadou, je souhaite commander un projet : ${typeText}. Mon estimation automatisée en ligne est de ${price} $. Merci de valider mon créneau de traitement.`;
-            window.open(`https://wa.me/2290169134408?text=${encodeURIComponent(message)}`, '_blank');
-        }
+       // TUNNEL WHATSAPP AUTONOME (DEVIS)
+function sendQuoteAutomation() {
+    const price = document.getElementById('total-price').innerText;
+    const typeText = document.getElementById('site-type').options[document.getElementById('site-type').selectedIndex].text;
+    
+    const message = `Bonjour Studio Kponadou, je souhaite commander un projet : ${typeText}. Mon estimation automatisée en ligne est de ${price} $. Merci de valider mon créneau de traitement.`;
+    window.open(`https://wa.me/2290169134408?text=${encodeURIComponent(message)}`, '_blank');
+}
 
-        // TUNNEL E-MAIL AUTOMATISÉ
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('clientName').value;
-            const text = document.getElementById('clientMsg').value;
-            
-            const emailSubject = encodeURIComponent(`Nouveau Projet - Studio Kponadou`);
-            const emailBody = encodeURIComponent(`Bonjour,\n\nDemande de projet reçue de : ${name}.\n\nDétails :\n${text}`);
-            
-            window.location.href = `mailto:succesanicet@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-        }
+// TUNNEL DOUBLE ACTION (E-MAIL + WHATSAPP CORRIGÉ)
+function handleContactSubmit(event) {
+    event.preventDefault(); // Empêche la page de se recharger inutilement
+    
+    // Récupération sécurisée des valeurs
+    const name = document.getElementById('clientName').value;
+    const text = document.getElementById('clientMsg').value;
+    
+    // 1. Préparation des textes de message
+    const rawMessage = `Bonjour Studio Kponadou,\n\nNouveau message de : ${name}\n\nObjectifs du projet :\n${text}`;
+    
+    // 2. ACTION E-MAIL (Ouvre l'application de messagerie par défaut)
+    const emailSubject = encodeURIComponent(`Nouveau Projet - Studio Kponadou`);
+    const emailBody = encodeURIComponent(rawMessage);
+    window.location.href = `mailto:succesanicet@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    
+    // 3. ACTION WHATSAPP SIMULTANÉE (Ouvre WhatsApp dans un nouvel onglet après 1 seconde)
+    setTimeout(() => {
+        const whatsappUrl = `https://wa.me/2290169134408?text=${encodeURIComponent(rawMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    }, 1000);
+}
     </script>
 </body>
 </html>
